@@ -1,0 +1,26 @@
+$ cat req.txt
+sudo apt-get install python
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+sudo python get-pip.py
+sudo apt-get install pylint
+sudo pip install jedi flake8 importmagic autopep8
+sudo apt-get install emacs
+sudo apt install ipython
+sudo apt-get install python-setuptools python-dev build-essential
+sudo pip install --upgrade virtualenv
+
+# tensorflow
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.11.0rc0-cp27-none-linux_x86_64.whl
+sudo pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.11.0rc0-cp27-none-linux_x86_64.whl
+
+# openCV
+wget https://github.com/Itseez/opencv/archive/2.4.13.zip
+sudo apt-get install build-essential
+sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+git clone https://github.com/Itseez/opencv.git
+sudo mkdir /usr/local/lib/opencv
+sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/lib/opencv ~/opencv/
+sudo make
+sudo make install
+
