@@ -1,0 +1,46 @@
+alias sr="screen -r"
+alias python=python2.7
+alias crontab="crontab -i"
+alias less="less -M"
+alias cvs='cvs -z9'
+alias ls='ls --color'
+alias ll='ls -l'
+alias la='ls -a'
+alias cp='cp -i'
+alias mv='mv -i'
+alias history='history 10000'
+alias ppwd='pwd -P'
+alias grep='grep --color'
+alias less='less -R'
+alias vi='/usr/bin/vim'
+
+umask 027
+
+# set prompt
+GREEN="\[$(tput setaf 2)\]"
+RESET="\[$(tput sgr0)\]"
+#PS1="\\[$(echo $?)\\] \[\e[1;33m\]\t \u \h:\W$\[\e[0m\]  "
+PS1="${GREEN}\W${RESET} $  "
+
+stty -ixon -ixoff
+
+# keep command history in file in current dir
+export PROMPT_COMMAND="command_history"
+alias wanted='grep -v "^ls$\|^cd$ \|^clear$" | wc -l'
+function command_history()
+{
+  if [ "$?" == "0" ] ; then
+    if [ `ls -ld . | cut -f3 -d\ ` == "$USER" ] ; then
+      NEW=`history | tail -1 | sed 's:^ *[0-9]* *::'`
+      if [ `echo $NEW | wanted` == 1 ] ; then
+        OLD=''
+        if [ -e .history ]; then
+          OLD=`tail -1 .history | cut -f2- -d\ `
+        fi
+        if [ "$NEW" != "$OLD" ] ; then
+          ((date +%F.%H-%M-%S | tr -d '\n' ; echo " $NEW") >>.history) 2>/dev/null
+        fi
+      fi
+    fi
+  fi
+}

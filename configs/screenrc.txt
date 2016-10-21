@@ -1,0 +1,34 @@
+shell -${SHELL}
+defscrollback 2048
+startup_message off
+hardstatus on
+hardstatus alwayslastline
+
+hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
+#  d  dim
+#  u  underline
+#  b  bold
+#  r  reverse
+#  s  standout
+#  B  blinking
+
+#  k  black
+#  r  red
+#  g  green
+#  y  yellow
+#  b  blue
+#  m  magenta
+#  c  cyan
+#  w  white
+#  d  default color
+#  .  leave color unchanged
+
+# Fredde experiment.
+#multiuser on
+
+
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce "on"
+
+#term screen-256color
