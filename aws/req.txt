@@ -23,8 +23,20 @@ sudo apt-get install python-setuptools python-dev build-essential
 sudo pip install --upgrade virtualenv
 
 # tensorflow
+# Ubuntu/Linux 64-bit, CPU only, Python 2.7
 export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.11.0rc0-cp27-none-linux_x86_64.whl
-sudo pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.11.0rc0-cp27-none-linux_x86_64.whl
+# Ubuntu/Linux 64-bit, GPU enabled, Python 2.7
+# Requires CUDA toolkit 8.0 and CuDNN v5. For other versions, see "Install from sources" below.
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.11.0-cp27-none-linux_x86_64.whl
+# Ubuntu/Linux 64-bit, GPU enabled, Python 3.5
+# Requires CUDA toolkit 8.0 and CuDNN v5. For other versions, see "Install from sources" below.
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.11.0-cp35-cp35m-linux_x86_64.whl
+
+sudo pip install --upgrade $TF_BINARY_URL
+
+# CUDA (doesn't work yet)
+wget https://developer.nvidia.com/compute/cuda/8.0/prod/local_installers/cuda_8.0.44_linux-run
+sudo sh uda_8.0.44_linux-run
 
 # openCV
 wget https://github.com/Itseez/opencv/archive/2.4.13.zip
