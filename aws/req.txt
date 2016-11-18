@@ -2,10 +2,23 @@ $ cat req.txt
 sudo apt-get install python
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 sudo python get-pip.py
+
+# pylint
 sudo apt-get install pylint
+
+# emacs py dev
 sudo pip install jedi flake8 importmagic autopep8
 sudo apt-get install emacs
+
+# ipython
 sudo apt install ipython
+sudo apt-get install ipython-notebook
+
+# numpy
+sudo apt-get install install numpy
+sudo apt-get install python-matplotlib
+
+
 sudo apt-get install python-setuptools python-dev build-essential
 sudo pip install --upgrade virtualenv
 
@@ -23,4 +36,8 @@ sudo mkdir /usr/local/lib/opencv
 sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/lib/opencv ~/opencv/
 sudo make
 sudo make install
+
+# openCV via apt-get
+sudo apt-get search opencv
+sudo apt-get install python-opencv
 
