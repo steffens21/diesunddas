@@ -11,11 +11,11 @@ sudo pip install jedi flake8 importmagic autopep8
 sudo apt-get install emacs
 
 # ipython
-sudo apt install ipython
+sudo apt-get install ipython
 sudo apt-get install ipython-notebook
 
 # numpy
-sudo apt-get install install numpy
+sudo apt-get install python-numpy
 sudo apt-get install python-matplotlib
 
 
