@@ -16,11 +16,48 @@ alias vi='/usr/bin/vim'
 
 umask 027
 
-# set prompt
-GREEN="\[$(tput setaf 2)\]"
-RESET="\[$(tput sgr0)\]"
+## set prompt
+## ----------
+#GREEN="\[$(tput setaf 2)\]"
+#RESET="\[$(tput sgr0)\]"
 #PS1="\\[$(echo $?)\\] \[\e[1;33m\]\t \u \h:\W$\[\e[0m\]  "
-PS1="${GREEN}\W${RESET} $  "
+#PS1="${GREEN}\W${RESET} $  "
+
+# Colour codes
+txtcyn='\[\e[0;96m\]' # cyan
+txtgrn='\[\e[1;32m\]' # green
+txtpur='\[\e[0;35m\]' # purple
+txtwht='\[\e[0;37m\]' # white
+txtred='\[\e[1;31m\]' # red
+txtrst='\[\e[0m\]'    # text reset
+
+# Which (C)olour for what part of the prompt
+pathC="${txtgrn}"
+gitC="${txtpur}"
+pointerC="${txtwht}"
+normalC="${txtrst}"
+redC="${txtred}"
+contC="${txtcyn}"
+
+# Get the name of our branch and put parenthesis around it
+gitBranch() {
+    branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
+    size=${#branch}
+    if [ $size -gt 20 ]; then
+        branch=$(echo $branch | cut -c 1-16)'...)'
+    fi
+    echo $branch
+}
+
+currentContainer() {
+    if [ $SINGULARITY_NAME ]; then
+        echo "[$SINGULARITY_NAME]"
+    fi
+}
+
+# Build the prompt
+export PS1="[${redC}\\[$(echo \$?)\\]${normalC}] \h ${contC}\$(currentContainer) ${pathC}\W ${gitC}\$(gitBranch) ${pointerC}\$${normalC} "
+
 
 stty -ixon -ixoff
 
